@@ -8,8 +8,7 @@ const timer = (deadline) => {
     let dateNow = new Date().getTime();
     let timeRemaining = (dateStop - dateNow) / 1000;
     //let days = Math.floor(timeRemaining / 60 / 60 / 24);
-   // let hours = Math.floor((timeRemaining / 60 / 60) % 24);
-   
+    //let hours = Math.floor((timeRemaining / 60 / 60) % 24);
     let hours = Math.floor(timeRemaining / 60 / 60);
     let minutes = Math.floor((timeRemaining / 60 ) % 60);
     let seconds = Math.floor(timeRemaining % 60);
@@ -20,9 +19,8 @@ const timer = (deadline) => {
   const updateClock = () => {
    
     let getTime = getTimeRemaining();
-    console.log (getTime);
     if (getTime.hours.toString().length < 2) {
-            getTime.hours = "0" + getTime.hours.toString();
+      getTime.hours = "0" + getTime.hours.toString();
     };
     if (getTime.minutes.toString().length < 2) {
       getTime.minutes = "0" + getTime.minutes.toString();
@@ -42,13 +40,8 @@ const timer = (deadline) => {
       timerSeconds.textContent = "00";
     };
     
-  }
-    
-
+  };
   updateClock();
-  
-
- // setInterval(getTimeRemaining, 1000, "08 March 2022")
 };
 
 module.exports = timer;
