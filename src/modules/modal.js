@@ -10,15 +10,15 @@ const modal = () => {
     let idInterval;
 
     const modalAnimate = () => {
-      count++;
+      count+=10;
       idInterval = requestAnimationFrame(modalAnimate);
-      if (count < 40) {
+      if (count < 250) {
         modalContent.style.top = count + "px";
       } else {
-        cancelAnimationFrame(modalAnimate);
+        cancelAnimationFrame(idInterval);
       }
     };
-  
+   
     if (window.screen.width >= 768 ) {
       modalAnimate();
     } else {
