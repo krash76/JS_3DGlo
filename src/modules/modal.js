@@ -10,7 +10,7 @@ const modal = () => {
     let idInterval;
 
     const modalAnimate = () => {
-      count+=10;
+      count+=15;
       idInterval = requestAnimationFrame(modalAnimate);
       if (count < 250) {
         modalContent.style.top = count + "px";
@@ -21,10 +21,11 @@ const modal = () => {
    
     if (window.screen.width >= 768 ) {
       modalAnimate();
-    } else {
-      modal.style.display = "block";
     }
-  })));
+     else {
+     modal.style.display = "block";
+    }
+   })));
 
   closeBtn.addEventListener("click", () => {
     modal.style.display = "none";
