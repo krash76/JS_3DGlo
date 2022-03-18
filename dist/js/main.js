@@ -16,7 +16,7 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_menu_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/menu.js */ \"./modules/menu.js\");\n/* harmony import */ var _modules_modal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modal.js */ \"./modules/modal.js\");\n/* harmony import */ var _modules_forms_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/forms.js */ \"./modules/forms.js\");\nconst timer = __webpack_require__(/*! ./modules/timer.js */ \"./modules/timer.js\");\r\n\r\n\r\n\r\n\r\ntimer(\"19 March 2022\");\r\n(0,_modules_menu_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\r\n(0,_modules_modal_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\r\n(0,_modules_forms_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\n\n//# sourceURL=webpack:///./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_menu_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/menu.js */ \"./modules/menu.js\");\n/* harmony import */ var _modules_modal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modal.js */ \"./modules/modal.js\");\n/* harmony import */ var _modules_forms_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/forms.js */ \"./modules/forms.js\");\n/* harmony import */ var _modules_tabs_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/tabs.js */ \"./modules/tabs.js\");\nconst timer = __webpack_require__(/*! ./modules/timer.js */ \"./modules/timer.js\");\r\n\r\n\r\n\r\n\r\n\r\ntimer(\"19 March 2022\");\r\n(0,_modules_menu_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\r\n(0,_modules_modal_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\r\n(0,_modules_forms_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\r\n(0,_modules_tabs_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])();\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ }),
 
@@ -50,6 +50,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst modal = () => {\r\n  const modal = document.querySelector(\".popup\");\r\n  const buttons = document.querySelectorAll(\".popup-btn\");\r\n  const closeBtn = modal.querySelector(\".popup-close\");\r\n  const modalContent = modal.querySelector(\".popup-content\");\r\n  \r\n  buttons.forEach(button => (button.addEventListener(\"click\", () => {\r\n    modal.style.display = \"block\";\r\n    let count = -300;\r\n    let idInterval;\r\n\r\n    const modalAnimate = () => {\r\n      count+=10;\r\n      idInterval = requestAnimationFrame(modalAnimate);\r\n      if (count < 250) {\r\n        modalContent.style.top = count + \"px\";\r\n      } else {\r\n        cancelAnimationFrame(idInterval);\r\n      }\r\n    };\r\n   \r\n    if (window.screen.width >= 768 ) {\r\n      modalAnimate();\r\n    } else {\r\n      modal.style.display = \"block\";\r\n    }\r\n  })));\r\n\r\n  closeBtn.addEventListener(\"click\", () => {\r\n    modal.style.display = \"none\";\r\n  })\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modal);\n\n//# sourceURL=webpack:///./modules/modal.js?");
+
+/***/ }),
+
+/***/ "./modules/tabs.js":
+/*!*************************!*\
+  !*** ./modules/tabs.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst tabs = () => {\r\n\r\n  const tabMenu = document.querySelector(\".service-header\"); \r\n  const tabs = document.querySelectorAll(\".service-header-tab\");\r\n  const tabContent = document.querySelectorAll(\".service-tab\");\r\n\r\n  tabMenu.addEventListener(\"click\", (e) => {\r\n    if (e.target.classList.contains(\"service-header-tab\")) {\r\n      tabs.forEach((tab, index) => {\r\n        if (tab === e.target) {\r\n          tab.classList.add (\"active\");\r\n        } else {\r\n          tab.classList.remove(\"active\")\r\n        }\r\n      })\r\n    }\r\n  });\r\n\r\n  console.log(tabs);\r\n\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tabs);\n\n//# sourceURL=webpack:///./modules/tabs.js?");
 
 /***/ }),
 
