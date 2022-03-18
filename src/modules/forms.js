@@ -4,7 +4,8 @@ const forms = () => {
   const nameInputs = document.querySelectorAll('input[name="user_name"]');
   const emailInputs = document.querySelectorAll('input[name="user_email"]');
   const phoneInputs = document.querySelectorAll('input[name="user_phone"]');
-
+  const messageInput = document.querySelector('input[placeholder="Ваше сообщение"]');
+  
   inputs.forEach((input)=> {
     input.addEventListener("input", (e) => {
       e.target.value = e.target.value.replace(/\D+/, "");
@@ -16,6 +17,11 @@ const forms = () => {
       e.target.value = e.target.value.replace(/[^а-яё\-\s]/ig, "");
     })
   });
+  
+  messageInput.addEventListener("input", (e) => {
+      e.target.value = e.target.value.replace(/[^а-яё\-\s]/ig, "");
+    });
+
 
   emailInputs.forEach((input)=> {
     input.addEventListener("input", (e) => {
