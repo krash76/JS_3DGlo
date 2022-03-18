@@ -26,7 +26,7 @@ const timer = (deadline) => {
       getTime.minutes = "0" + getTime.minutes.toString();
     };
     if (getTime.seconds.toString().length < 2) {
-      getTime.seconds = "0" + getTime.seconds.toString();
+      getTime.seconds = `0${getTime.seconds.toString()}`; //!!! ноль можно добавить через тернарный оператор!!!
     };
     timerHours.textContent = getTime.hours;
     timerMinutes.textContent = getTime.minutes;
