@@ -26,16 +26,21 @@ const calc = (price = 100) => {
     if (calcType.value && calcSquare.value) {
       totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue; 
       let num = 0;
-      let interval = setInterval(() => {
+      let idInterval;
+          
+      const totalAnimate = () => {
+        idInterval = requestAnimationFrame(totalAnimate);
         num += 10;
         total.textContent = num;
         if (num === totalValue) {
-          clearInterval(interval);
+          cancelAnimationFrame(idInterval);
         } 
-      } , 0.1);
+      }
+      totalAnimate();
     } else {
       totalValue = 0;
     };
+    
   };
 
   calcBlock.addEventListener("input", (e) => {
