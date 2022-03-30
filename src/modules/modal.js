@@ -34,7 +34,6 @@ const modal = () => {
         } 
       });
     } else {
-      console.log(modal.style);
       modal.style.display = "block";
     }
   })));
