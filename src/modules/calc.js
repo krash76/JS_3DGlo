@@ -23,24 +23,33 @@ const calc = (price = 100) => {
       calcDayValue = 1.5;
     };
 
+    const animate = ({timing, draw, duration}) => {
+      let start = performance.now();
+      requestAnimationFrame(function animate(time) {
+        let timeFraction = (time - start) / duration;
+        if (timeFraction > 1) timeFraction = 1;
+        let progress = timing(timeFraction);
+        draw(progress); 
+        if (timeFraction < 1) {
+          requestAnimationFrame(animate);
+        }
+      }) 
+    };
+
     if (calcType.value && calcSquare.value) {
-      totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue; 
-      let num = 0;
-      let idInterval;
-          
-      const totalAnimate = () => {
-        idInterval = requestAnimationFrame(totalAnimate);
-        num += 10;
-        total.textContent = num;
-        if (num === totalValue) {
-          cancelAnimationFrame(idInterval);
+      animate({
+        duration: 1500,
+        timing(timeFraction) {
+          return timeFraction;
+        },
+        draw(progress) {
+          totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue; 
+          total.textContent = Math.floor(progress * totalValue);
         } 
-      }
-      totalAnimate();
+      });
     } else {
       totalValue = 0;
     };
-    
   };
 
   calcBlock.addEventListener("input", (e) => {
