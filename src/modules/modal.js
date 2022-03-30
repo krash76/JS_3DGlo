@@ -34,7 +34,17 @@ const modal = () => {
     };
    */
     if (window.screen.width >= 768 ) {
-      modalAnimate();
+      animate({
+      duration: 1000,
+      timing(timeFraction) {
+          return timeFraction;
+        },
+      draw(progress) {
+        modal.style.display = "block";
+        let count = 250;
+        modalContent.style.top = count * progress + "px";  
+        } 
+      });
     } else {
       modal.style.display = "block";
     }
