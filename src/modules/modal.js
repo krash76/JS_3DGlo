@@ -1,9 +1,24 @@
+import { animate } from "./helpers";
+
 const modal = () => {
   const modal = document.querySelector(".popup");
   const buttons = document.querySelectorAll(".popup-btn");
   const modalContent = modal.querySelector(".popup-content");
   
   buttons.forEach(button => (button.addEventListener("click", () => {
+    animate({
+      duration: 1000,
+      timing(timeFraction) {
+          return timeFraction;
+        },
+      draw(progress) {
+        modal.style.display = "block";
+        let count = 250;
+        modalContent.style.top = count * progress + "px";  
+        } 
+      });
+
+    /* 
     modal.style.display = "block";
     let count = -300;
     let idInterval;
@@ -17,7 +32,7 @@ const modal = () => {
         cancelAnimationFrame(idInterval);
       }
     };
-   
+   */
     if (window.screen.width >= 768 ) {
       modalAnimate();
     } else {
