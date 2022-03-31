@@ -5,6 +5,7 @@ import forms from "./modules/forms.js";
 import tabs from "./modules/tabs.js";
 import slider from "./modules/slider.js";
 import calc from "./modules/calc.js";
+import sendForm from "./modules/sendForm.js";
 
 
 timer("19 March 2022");
@@ -14,3 +15,12 @@ forms();
 tabs();
 slider();
 calc(100);
+sendForm({
+  formId:"form1", 
+  someElem: [
+    {
+      type: "block",
+      id:"total"
+    }
+  ]
+});
