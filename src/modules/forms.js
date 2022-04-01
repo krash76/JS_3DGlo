@@ -25,7 +25,7 @@ const forms = () => {
 
   phoneInputs.forEach((input)=> {
     input.addEventListener("input", (e) => {
-      e.target.value = e.target.value.replace(/[^\d\(\)\-]/ig, "");
+      e.target.value = e.target.value.replace(/[^\d\(\)\-\+]/ig, "");
     })
   });
 };

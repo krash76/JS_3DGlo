@@ -1,5 +1,16 @@
 const sendForm = ({formId, someElem = []}) => {
   const form = document.getElementById(formId);
+
+  const validate = (list) => {
+    list.forEach(input => {
+      if ((input.name === "user_name" && /^([а-яА-ЯёЁ\s]*)$/.test(input.value))
+        || (input.name === "user_phone" && /^([\d\(\)\-\+]*)\d$/.test(input.value))
+        || (input.name === "user_message" && /^([а-яА-ЯёЁ\s\d\,\.\"\?\!\:\;\-\)\(]*)$/.test(input.value))) {
+      }     
+    })
+  return true 
+  };
+
   const sendData = (data) => {
     return fetch("https://jsonplaceholder.typicode.com/posts", {
       method: "POST",
@@ -14,10 +25,11 @@ const sendForm = ({formId, someElem = []}) => {
     e.preventDefault();
     const formData = new FormData(form);
     const formBody = {};
-    
+    const formElements = form.querySelectorAll("input");
+
     formData.forEach ((val, key) => {
       formBody[key] = val;
-    })
+    });
 
     someElem.forEach((elem) => {
       const element  = document.getElementById(elem.id);
@@ -29,11 +41,16 @@ const sendForm = ({formId, someElem = []}) => {
       }
     });
 
-    sendData(formBody).then(data => {
-      console.log(data)
-    })
-   
+    if (validate(formElements)) {
+      sendData(formBody).then(data => {
+        formElements.forEach(input => {
+          input.value = "";
+        })
+      })
+    }else {
+      alert ("введенные данные не валидны")
+    } 
   })
-}
+};
 
 export default sendForm;
