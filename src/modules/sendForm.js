@@ -8,15 +8,28 @@ const sendForm = ({formId, someElem = []}) => {
   const successText = "Спасибо! Наш менеджер свяжется с Вами";
 
   const validate = (list) => {
+    let success = true;
+    
     list.forEach(input => {
-      if ((input.name === "user_name" && /^([а-яА-ЯёЁ\s]*)$/.test(input.value))
-        || (input.name === "user_phone" && /^([\d\(\)\-\+]*)\d$/.test(input.value))
-        || (input.name === "user_message" && /^([^а-яё\s\d\,\.\"\?\!\:\;\-\)\(]*)$/.test(input.value))) {
-      }     
+      inputSuccess(input);
+      if (!input.classList.contains("success")) {
+        success = false;
+        console.log (input.classList);
+      };
     })
-  return true 
+     return success
   };
 
+  const inputSuccess = (input) => {
+    if ((input.name === "user_name" && /^([а-яА-ЯёЁ\s]*)$/.test(input.value))
+        || (input.name === "user_email")
+        || (input.name === "user_phone" && /^([\d\(\)\-\+]*)\d$/.test(input.value))
+        || (input.name === "user_message" && /([^а-яё\s\d\,\.\"\?\!\:\;\-\)\(]*)$/.test(input.value))) {
+          input.classList.add ("success");
+          console.log (input.classList);
+        }  
+  };
+  
   const sendData = (data) => {
     return fetch("https://jsonplaceholder.typicode.com/posts", {
       method: "POST",
@@ -54,7 +67,7 @@ const sendForm = ({formId, someElem = []}) => {
       {
         transform: 'perspective(120px) rotateX(-180deg) rotateY(-179.9deg)', offset: 1.0
       }
-    ], 2000);
+    ], 1000);
 
 
     form.append(statusBlock);
