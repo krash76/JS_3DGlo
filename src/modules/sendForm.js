@@ -14,20 +14,19 @@ const sendForm = ({formId, someElem = []}) => {
       inputSuccess(input);
       if (!input.classList.contains("success")) {
         success = false;
-        console.log (input.classList);
+        
       };
     })
      return success
   };
 
   const inputSuccess = (input) => {
-    if ((input.name === "user_name" && /^([а-яА-ЯёЁ\s]*)$/.test(input.value))
-        || (input.name === "user_email")
-        || (input.name === "user_phone" && /^([\d\(\)\-\+]*)\d$/.test(input.value))
-        || (input.name === "user_message" && /([^а-яё\s\d\,\.\"\?\!\:\;\-\)\(]*)$/.test(input.value))) {
-          input.classList.add ("success");
-          console.log (input.classList);
-        }  
+    if ((input.name === "user_name" && input.value.trim().length > 1 && /^([а-яА-ЯёЁ\s]*)$/.test(input.value))
+      || (input.name === "user_email" && input.value.trim()!== "")
+      || (input.name === "user_phone"  && /^([\d\(\)\-\+]*)\d$/.test(input.value) && input.value.trim().match(/\d/g).length > 4 && input.value.trim().match(/\d/g).length < 13)
+      || (input.name === "user_message" && /([^а-яё\s\d\,\.\"\?\!\:\;\-\)\(]*)$/.test(input.value))) {
+      input.classList.add ("success");
+    }  
   };
   
   const sendData = (data) => {
@@ -69,7 +68,6 @@ const sendForm = ({formId, someElem = []}) => {
       }
     ], 1000);
 
-
     form.append(statusBlock);
     formData.forEach ((val, key) => {
       formBody[key] = val;
@@ -95,8 +93,8 @@ const sendForm = ({formId, someElem = []}) => {
         statusBlock.textContent = errorText;
       })
     }else {
-      alert ("введенные данные не валидны")
-    }
+      alert ("введенные данные не валидны");
+    } 
   };
 
   try {
