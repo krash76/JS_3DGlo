@@ -7,7 +7,7 @@ import slider from "./modules/slider.js";
 import calc from "./modules/calc.js";
 import sendForm from "./modules/sendForm.js";
 
-timer("19 March 2022");
+timer("10 Aprile 2022");
 menu();
 modal();
 forms();

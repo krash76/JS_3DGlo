@@ -7,6 +7,7 @@ const menu = () => {
 
   document.addEventListener("click", (e) => {
     if (menu.classList.contains("active-menu") || e.target.closest(".menu")) {
+      e.preventDefault();
       handleMenu();
     }
   })
